@@ -3,17 +3,18 @@ name: myntra-prod-b21
 on: workflow_dispatch
 
 jobs:
-  first-job:
-    runs-on: ubuntu-latest
+    my-job:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Clone the code on runner
-        run: git clone https://github.com/ashishpawar4723/myntra_clone.git
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v2
 
-      - name: Verify the code
-        run: |
-          cd myntra_clone
-          ls -la
+            - name: docker build
+              run: docker build -t my-myntra .
+
+            - name: check docker image
+              run: docker images
 
 
 
