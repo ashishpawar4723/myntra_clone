@@ -29,6 +29,15 @@ jobs:
                 docker tag my-myntra:latest 456769503748.dkr.ecr.ap-south-1.amazonaws.com/myntra:latest
                 docker push 456769503748.dkr.ecr.ap-south-1.amazonaws.com/myntra:latest
 
+            - name: connect to kubernetes cluster
+              run: |
+                aws eks --region ap-south-1 update-kubeconfig --name b21
+            
+            - name: deploy to kubernetes cluster
+              run: |
+                kubectl apply -f k8s/app/
+
+
 
 
 
